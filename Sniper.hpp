@@ -1,15 +1,17 @@
 #pragma once
 #include "Soldier.hpp"
-using namespace std;
 
+const int max_health_sniper = 100;
+const int Damage_snipe = 50;
 
-class Sniper : public Soldier {
+class Sniper : public  Soldier {
+
 public:
-    Sniper (int solider_number) :
-            Soldier(100, -50, solider_number,100){}
+  
+// CONSTRUCTORS
+Sniper(uint num_p) : Soldier(max_health_sniper , Damage_snipe , num_p) {}
+Sniper(uint max_health_point , uint damage , uint num_p) : Soldier(max_health_point , damage , num_p){}
 
-    void playS (std::vector<std::vector<Soldier*>> &board, pair<int,int> location);
-
+void attack(vector<vector<Soldier *>> &board, pair<int, int> location);
 };
-
 

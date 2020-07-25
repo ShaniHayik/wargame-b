@@ -1,15 +1,18 @@
 #pragma once
-#include "Soldier.hpp"
+#include "Paramedic.hpp"
+
 using namespace std;
 
 
-class ParamedicCommander : public Soldier{
-public:
-    ParamedicCommander (int solider_number) :
-            Soldier(200, 0, solider_number,200){}
+const int max_health_point_paracom = 200;
+const int Damage_paracom = 100;
 
-    void playS (std::vector<std::vector<Soldier*>> &board, pair<int,int> location);
+class ParamedicCommander : public  Paramedic {
+
+public:
+
+ParamedicCommander(uint num_p) : Paramedic(max_health_point_paracom , Damage_paracom , num_p){}
+/*pass through the board and call every paramedic in the board that in the same player*/
+void attack(vector<vector<Soldier *>> &board, pair<int, int> location);
 
 };
-
-

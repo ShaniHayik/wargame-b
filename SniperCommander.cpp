@@ -1,40 +1,29 @@
 #include "SniperCommander.hpp"
-#include <iostream>
-#include "Sniper.hpp"
 
+using namespace std;
 
-void SniperCommander::playS(vector<vector<Soldier*>> &b, pair<int,int> location) {
-    int nRow = b.size();
-    int nCol = b[0].size();
-    pair < double, Soldier * > nextStep = make_pair(MAXFLOAT, nullptr);
-    for (int i = 0; i < nRow; ++i) {
-        for (int j = 0; j < nCol; ++j) {
-            Soldier *soli = b[i][j];
-            if (soli != nullptr) { //if there is some solider in this position on the board so-
-                if (Sniper * soliP = dynamic_cast<Sniper *>(soli)) { //soli->get_player_number() == this->get_player_number()
-                    soliP->playS(b, {i, j});
-                } else if (soli->get_player_number() != this->get_player_number()) { // We found an enemy soldier
-                    double findS = soli->get_max_health(); // now we want to find the largest health
-                    if (soli->get_current_health() == MAXFLOAT) {
-                        nextStep.first = findS;
-                        nextStep.second = soli;
-                    } //else if (soli->get_current_health() > playS.first) {
-//                        nextStep.first = findS;
-//                        nextStep.second = soli;
-//                    }
-                }
-            }
-        }
-    }
-    int reHealth = nextStep.second->get_current_health() + this->get_demage();
-    if (reHealth <= 0) {
-        delete nextStep.second;
-        nextStep.second = nullptr;
-    }
-    else nextStep.second->set_current_health(reHealth);
-}
+// .כמו צלף, אבל כשהוא זז, לא רק הוא יורה אלא כל הצלפים של אותו שחקן יורים
 
-
-
-
-
+ void SniperCommander::attack(vector<vector<Soldier*>> &board,pair<int,int> dest) {
+  
+    for(int i=0;i<board.size();i++) {
+        for(int j=0;j<board[i].size();j++) {
+         
+            Soldier *if_snifer = board[i][j]; // craete solider in board[i][j] position
+            if(if_snifer!=nullptr) { // if this position!= nullptr, so- 
+                if(Sniper *is_sniff = dynamic_cast<Sniper*> (if_snifer)) { // if the pointer type of if_snifer is " *sniffer ", so-
+                 
+                    SniperCommander *if_commSniff = dynamic_cast<SniperCommander*> (if_snifer); // trying to casting from pointer type *sniffer
+                    // to pointer type *SniperCommander. if dont succeeded we get nullptr  
+                    
+                    if((if_commSniff == nullptr) || (i == dest.first && j==dest.second)) { 
+                        if(is_sniff->getNum() == board[dest.first][dest.second]->getNum()){ // if they in the same group, so-
+                            is_sniff->Sniper::attack(board,make_pair(i,j)); // now is_sniff can attack caz he is Sniper
+                        
+                          }
+                      }     
+                  }
+              }
+          }
+      }
+  }

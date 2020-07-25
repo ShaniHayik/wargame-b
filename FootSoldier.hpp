@@ -1,17 +1,17 @@
 #pragma once
 #include "Soldier.hpp"
-using namespace std;
 
 
-class FootSoldier : public Soldier {
-    public:
-    FootSoldier (int solider_number) :
-            Soldier(100, -10, solider_number,100){}
+const int max_health_point_foot = 100;
+const int Damage_foot = 10;
 
-        void playS (std::vector<std::vector<Soldier*>> &board, pair<int,int> location);
+class FootSoldier : public  Soldier {
 
+public:
+// CONSTRUCTORS
+FootSoldier(uint num_p) : Soldier(max_health_point_foot , Damage_foot , num_p) {}
+FootSoldier(uint max_health_point , uint damage , uint num_p) : Soldier(max_health_point , damage , num_p){}
+  
+void attack(vector<vector<Soldier *>> &board, pair<int, int> location);
 
 };
-
-
-

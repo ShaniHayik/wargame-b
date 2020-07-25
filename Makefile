@@ -13,8 +13,15 @@ run: test
 test: TestRunner.o Test_amichai.o Test_oriane_yirat.o $(STUDENT_OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o test
 
+Test: TestCounter.o Test.o $(STUDENT_OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o Test
+
 %.o: %.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) --compile $< -o $@
+
+
+demo: Demo.o $(STUDENT_OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o demo
 
 clean:
 	rm -f *.o test

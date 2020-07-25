@@ -1,67 +1,34 @@
 #pragma once
-#include <math.h>
+#include <stdlib.h>
+#include <iostream>
 #include <vector>
-
-class Board;
 
 using namespace std;
 
-
-class Soldier {
-
+class Soldier{
+   
     private:
-        uint max_health;
-        uint demage;
-        uint player_number;
-        uint current_health;
+    uint  current_health;
+    uint  max_health_points;
+    uint damage; 
+    uint num_player;
 
+   // CONSTRUCTOR
     public:
-    Soldier (uint max_health, uint demage, uint player_number, uint current_health) :
-        max_health(max_health),
-        demage(demage),
-        player_number(player_number),
-        current_health(current_health){}
+    Soldier(uint max_health,uint damage , uint num_player) :
+       max_health_points(max_health), current_health(max_health) , damage(damage) , num_player(num_player) {} 
 
-        virtual ~Soldier() {}
+   // DESTRUCTOR - its virtual to create a vptr to delete the right solider
+    virtual ~Soldier(){};
+    
+     // Referring to the correct attack function by the virtual (cuz every solider has diffrent attack function)
+    virtual void attack(vector<vector<Soldier *>> &board, pair<int, int> location) = 0;
 
-        double distance (int x1, int y1, int x2, int y2) {
-            return sqrt(pow(x1 - x2,2) + pow(y1 - y2,2));
-        }
-
-        virtual void playS (std::vector<std::vector<Soldier*>> &board, pair<int,int> location) = 0;
-
-        int get_current_health() {
-            return this->current_health;
-        }
-
-        int get_max_health() {
-            return this->max_health;
-        }
-
-        int get_demage() {
-            return this->demage;
-        }
-
-        void set_demage(int demage) {
-            this->demage = demage;
-        }
-
-        void set_max_health(int max_health) {
-            this->max_health = max_health;
-        }
-
-        void set_current_health(int current_health) {
-            this->current_health = current_health;
-        }
-
-        void set_player_number(int player_number) {
-            this->player_number = player_number;
-        }
-
-        int get_player_number() {
-            return this->player_number;
-        }
-
+    // getters and setters
+    int getNum() { return this->num_player; }
+    int getHealth(){ return this->current_health; }
+    int getMaxHealth() { return this->max_health_points; }
+    int getDamge() { return this->damage; }
+    void setHealth(uint  health_points1) { this->current_health=health_points1; }
 
 };
-
